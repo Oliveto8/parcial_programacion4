@@ -1,0 +1,38 @@
+<section class="about-container">
+  <h1>📖 Acerca del Sistema</h1>
+  
+  <div class="about-card">
+    <h2>Sistema de Gestión Bibliotecaria</h2>
+    <p>Aplicación desarrollada como proyecto educativo para la materia de Laboratorio IV.</p>
+    
+    <div class="info-grid">
+      <div class="info-item">
+        <span class="label">Versión</span>
+        <!-- Interpolación del signal -->
+        <span class="value">{{ versionActual() }}</span>
+      </div>
+      <div class="info-item">
+        <span class="label">Framework</span>
+        <span class="value">Angular 21</span>
+      </div>
+      <div class="info-item">
+        <span class="label">Universidad</span>
+        <span class="value">UTN</span>
+      </div>
+    </div>
+
+    <div class="concepts">
+      <h3>Conceptos Cubiertos</h3>
+      <ul>
+        <li>✅ Signals: signal(), computed(), effect()</li>
+        <li>✅ Input / Output: input(), output(), model()</li>
+        <li>✅ Todos los tipos de binding</li>
+        <li>✅ Navegación y rutas</li>
+      </ul>
+    </div>
+  </div>
+
+  @if (version()) {
+    <p class="query-param-demo">💡 Query param detectado: version={{ version() }}</p>
+  }
+</section>

@@ -1,0 +1,30 @@
+<header class="navbar">
+  <div class="navbar-content">
+    
+    <!-- Logo en imagen y Título -->
+    <div class="brand">
+      <img src="/cineize-logo-completo.png" alt="Logo Cineize" class="brand-logo">
+    </div>
+
+    <!-- Navegación -->
+    <nav class="nav-links">
+      <a *appRole="'admin'" routerLink="/add-pelicula" routerLinkActive="active">Panel Admin</a>
+      <a routerLink="/home" routerLinkActive="active">Inicio</a>
+      
+      <!-- Candy Bar siempre visible -->
+      <a routerLink="/candy" routerLinkActive="active">Candy Bar</a>
+
+      <!-- Mis Compras (Visible si el usuario está logueado, o puedes quitar el bloque if si quieres que se vea siempre) -->
+      @if (authService.currentUser()) {
+        <a routerLink="/mis-compras" routerLinkActive="active">Mis Compras</a>
+        <a href="#" (click)="logout(); $event.preventDefault()">Cerrar Sesión</a>
+      } @else {
+        <a routerLink="/login" routerLinkActive="active">Iniciar Sesión</a>
+      }
+    </nav>
+
+  </div>
+</header>
+
+<!-- Barra secundaria fina por fuera, justo debajo del header -->
+<div class="subnav-bar"></div>

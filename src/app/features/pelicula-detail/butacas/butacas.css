@@ -1,0 +1,172 @@
+/* Contenedor general */
+.contenedor-principal {
+  background-color: #121212;
+  color: white;
+}
+
+.mapa-cine-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.pantalla-curva-container {
+  width: 100%;
+  max-width: 550px;
+  margin: 0 auto 2.5rem auto;
+  text-align: center;
+}
+
+.pantalla-barra {
+  height: 5px;
+  width: 100%;
+  background: linear-gradient(90deg, rgba(255,255,255,0.1), rgba(255,255,255,0.9), rgba(255,255,255,0.1));
+  border-radius: 50% / 100% 100% 0 0;
+  box-shadow: 0 4px 18px rgba(255, 255, 255, 0.45);
+}
+
+.matriz-butacas-cine {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* Fila completa de asientos en línea recta estricta */
+.fila-asientos-row {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-bottom: 6px;
+  width: 100%;
+  white-space: nowrap !important;
+}
+
+/* Contenedor lineal de los 14 asientos */
+.asientos-container-lineal {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  gap: 3px;
+}
+
+.fila-letra {
+  width: 25px;
+  min-width: 25px;
+  font-size: 0.85rem;
+  text-align: center;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+/* Botón individual de asiento */
+.asiento-btn {
+  width: 26px !important;
+  min-width: 26px !important;
+  height: 26px !important;
+  font-size: 0.6rem;
+  border-radius: 4px;
+  transition: all 0.15s ease-in-out;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  margin: 0 !important;
+  flex-shrink: 0;
+}
+
+/* Placeholder para asientos vacíos */
+.asiento-placeholder {
+  width: 26px;
+  min-width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+/* Pasillos automáticos antes del asiento 3 y del asiento 13 */
+.pasillo-izq {
+  margin-left: 40px !important;
+}
+
+.pasillo-der {
+  margin-left: 40px !important;
+}
+
+.asiento-disponible {
+  background-color: #212529;
+  color: #f8f9fa;
+}
+
+.asiento-disponible:hover {
+  background-color: #495057;
+  border-color: #adb5bd;
+  transform: scale(1.15);
+  z-index: 2;
+}
+
+.asiento-seleccionado {
+  background-color: #0d6efd !important;
+  color: white !important;
+  border-color: #fff !important;
+  box-shadow: 0 0 8px rgba(13, 110, 253, 0.9);
+  transform: scale(1.15);
+  z-index: 2;
+}
+
+.asiento-ocupado {
+  background-color: #dc3545 !important;
+  color: #ffffff !important;
+  border-color: #b02a37 !important;
+  cursor: not-allowed;
+  opacity: 0.9;
+}
+
+.asiento-accesible {
+  border: 1px dashed #0dcaf0;
+  border-color: #adb5bd;
+  z-index: 2;
+}
+
+.icono-asiento {
+  font-size: 1rem;
+}
+
+.icono-ocupado {
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+.numero-asiento {
+  font-size: 0.65rem;
+}
+
+/* Leyenda de colores en una sola línea horizontal */
+.leyenda-box {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+/* Forzar que la leyenda de colores se mantenga en una sola fila horizontal */
+.d-flex.flex-row.justify-content-center.align-items-center.gap-4 {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  gap: 2.5rem !important;
+}
+
+.disponible-box { 
+  background-color: #212529; 
+  border: 1px solid #495057; 
+}
+
+.seleccionada-box { 
+  background-color: #0d6efd; 
+}
+
+.ocupada-box { 
+  background-color: #dc3545; 
+  border: 1px solid #b02a37; 
+}

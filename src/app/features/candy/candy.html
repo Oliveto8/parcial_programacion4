@@ -1,0 +1,49 @@
+<div class="home-container">
+  
+  <!-- Cabecera centrada -->
+  <div class="text-center mb-4 px-4 pt-4">
+    <h2 class="text-white m-0">🍿 Candy Bar</h2>
+    <p class="text-muted m-0">Disfruta tu película con los mejores snacks y bebidas.</p>
+  </div>
+
+  <!-- Resumen del Carrito flotante (lo dejamos aparte o alineado abajo para que no rompa el centro) -->
+  @if (totalItems() > 0) {
+    <div class="d-flex justify-content-center mb-4 px-4">
+      <div class="card bg-primary text-white p-3 shadow-lg d-flex flex-row align-items-center gap-3">
+        <div>
+          <span class="d-block small text-light">🛒 Carrito: <strong>{{ totalItems() }}</strong> prod.</span>
+          <span class="fs-5 fw-bold">Total: ${{ precioTotal().toLocaleString() }}</span>
+        </div>
+        <button class="btn btn-light btn-sm fw-bold text-dark px-3 py-2" (click)="finalizarCompra()">
+          Finalizar Compra
+        </button>
+      </div>
+    </div>
+  }
+
+  <!-- Estado de carga -->
+  @if (cargando()) {
+    <div class="text-center py-5">
+      <div class="spinner-border text-light" role="status">
+        <span class="visually-hidden">Cargando productos...</span>
+      </div>
+    </div>
+  } @else {
+    <!-- Grilla idéntica a la de películas -->
+    <div class="books-grid">
+      @for (producto of productos(); track producto.id) {
+        <div class="book-wrapper">
+          <app-card-candy 
+            [producto]="producto" 
+            (agregarAlCarrito)="agregarAlCarrito($event)" 
+          />
+        </div>
+      } @empty {
+        <div class="no-results">
+          <p>😔 No hay productos disponibles en este momento.</p>
+        </div>
+      }
+    </div>
+  }
+
+</div>

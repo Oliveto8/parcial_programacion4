@@ -1,0 +1,17 @@
+{
+  "name": "Sistema de Biblioteca",
+  "short_name": "Biblioteca",
+  "theme_color": "#2c3e50",
+  "background_color": "#f5f6fa",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+    "src": "icons/icon-1024.png",
+    "sizes": "1024x1024",
+    "type": "image/png",
+    "purpose": "any maskable"
+  }
+  ]
+}

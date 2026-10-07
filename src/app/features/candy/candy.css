@@ -1,0 +1,92 @@
+/* =========================================
+   CONTENEDOR PRINCIPAL DEL CANDY BAR
+   ========================================= */
+.home-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  text-align: center; /* Centra todo el texto por defecto en la cabecera */
+}
+
+/* =========================================
+   TÍTULOS Y TEXTOS DE LA CABECERA
+   ========================================= */
+.home-container h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  letter-spacing: 2px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.home-container p, 
+.home-container .text-muted {
+  text-align: center;
+}
+
+/* Asegura que los elementos internos flexibles también se centren */
+.home-container .d-flex {
+  justify-content: center !important;
+  text-align: center;
+}
+
+/* =========================================
+   GRILLA DE PRODUCTOS (Idéntica a películas)
+   ========================================= */
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 40px 60px;
+  box-sizing: border-box;
+  align-items: start; /* Evita que las tarjetas se estiren verticalmente */
+}
+
+/* Contenedor individual de cada card dentro de la grilla */
+.book-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Mensaje cuando no hay productos */
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px 20px;
+  color: #a0a0b8;
+  font-size: 1.1rem;
+}
+
+/* =========================================
+   RESPONSIVIDAD
+   ========================================= */
+@media (max-width: 1100px) {
+  .books-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 800px) {
+  .books-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+}
+
+@media (max-width: 550px) {
+  .books-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 10px;
+  }
+}

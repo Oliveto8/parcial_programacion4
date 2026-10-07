@@ -1,0 +1,52 @@
+<section class="home-container">
+  
+  <!-- Barra de búsqueda única para ambas secciones -->
+  <app-search-bar [(termino)]="filtroBusqueda" />
+
+  <!-- ================= SECCIÓN 1: PELÍCULAS EN CARTELERA ================= -->
+  <div class="section-container my-4">
+    <h2>Películas en cartelera</h2>
+
+    <div class="books-grid">
+      @for (pelicula of peliculasEnCartelera(); track pelicula.id) {
+        <div class="book-wrapper">
+          <app-pelicula-card 
+            [pelicula]="pelicula" 
+            (verFunciones)="onVerFunciones($event)" 
+          />
+        </div>
+      } @empty {
+        <div class="no-results">
+          <p>
+            😔 No se encontraron películas en cartelera para "{{ filtroBusqueda() }}"
+          </p>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- ================= SECCIÓN 2: PRÓXIMOS ESTRENOS ================= -->
+  <div class="section-container my-4">
+    <h2 class="subsection-title">Próximos estrenos</h2>
+
+    <div class="books-grid">
+      @for (pelicula of peliculasProximas(); track pelicula.id) {
+        <div class="book-wrapper">
+          <app-pelicula-card 
+            [pelicula]="pelicula" 
+            [esProximo]="true"
+            (verFunciones)="onVerFunciones($event)" 
+          />
+        </div>
+      } @empty {
+        <div class="no-results">
+          <p>😔 No se encontraron próximos estrenos para "{{ filtroBusqueda() }}"</p>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Rutas hijas -->
+  <!-- <router-outlet /> -->
+
+</section>

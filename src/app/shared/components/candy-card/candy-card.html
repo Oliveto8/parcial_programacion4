@@ -1,0 +1,35 @@
+<div class="candy-card">
+  <!-- Contenedor de la imagen -->
+  <div class="candy-image-container">
+    @if (producto.imagen_url) {
+      <img [src]="producto.imagen_url" [alt]="producto.nombre" class="candy-img">
+    } @else {
+      <div class="candy-img-placeholder">
+        <span>Sin imagen</span>
+      </div>
+    }
+    
+    @if (producto.stock === 0) {
+      <span class="candy-badge-agotado">Agotado</span>
+    }
+  </div>
+
+  <!-- Contenido -->
+  <div class="candy-content">
+    <span class="candy-category">{{ producto.categoria }}</span>
+    <h3 class="candy-title">{{ producto.nombre }}</h3>
+    <p class="candy-description">{{ producto.descripcion }}</p>
+
+    <div class="candy-footer">
+      <span class="candy-price">${{ producto.precio.toLocaleString() }}</span>
+      
+      <button 
+        class="candy-btn" 
+        [disabled]="producto.stock === 0"
+        (click)="onAgregar()"
+      >
+        {{ producto.stock > 0 ? '🛒 Agregar' : 'Agotado' }}
+      </button>
+    </div>
+  </div>
+</div>

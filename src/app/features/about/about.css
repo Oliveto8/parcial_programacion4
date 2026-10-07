@@ -1,0 +1,85 @@
+.about-container {
+  padding: 2rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.about-container h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+}
+
+.about-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  padding: 2rem;
+}
+
+.about-card h2 {
+  color: #2c3e50;
+  margin: 0 0 0.5rem;
+}
+
+.about-card p {
+  color: #7f8c8d;
+  line-height: 1.6;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.info-item {
+  text-align: center;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.info-item .label {
+  display: block;
+  font-size: 0.85rem;
+  color: #95a5a6;
+  margin-bottom: 0.25rem;
+}
+
+.info-item .value {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.concepts {
+  margin-top: 1.5rem;
+}
+
+.concepts h3 {
+  color: #2c3e50;
+  margin-bottom: 0.75rem;
+}
+
+.concepts ul {
+  list-style: none;
+  padding: 0;
+}
+
+.concepts li {
+  padding: 0.4rem 0;
+  color: #555;
+}
+
+.query-param-demo {
+  text-align: center;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: #ffeaa7;
+  border-radius: 8px;
+  color: #2c3e50;
+  font-weight: 500;
+}

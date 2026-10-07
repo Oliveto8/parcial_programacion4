@@ -1,0 +1,69 @@
+@if (!esProximo) {
+  <!-- DISEÑO 1: Película en Cartelera (Completa) -->
+  <div
+    class="card h-100 shadow-sm"
+    role="button"
+    tabindex="0"
+    (click)="onVerClick()"
+    (keydown.enter)="onVerClick()"
+    (keydown.space)="onVerClick(); $event.preventDefault()"
+  >
+    <div class="card-poster-container">
+      <img
+        [src]="pelicula.portada_url"
+        class="card-img-top"
+        [alt]="pelicula.titulo"
+      >
+    </div>
+
+    <div class="card-body d-flex flex-column">
+      <h5 class="card-title">{{ pelicula.titulo }}</h5>
+
+      <div class="mt-auto">
+        <p class="mb-1 text-sm"><strong>Duración:</strong> {{ pelicula.duracion_minutos }} min</p>
+        <div class="text-sm text-muted">
+          @if (pelicula.formato) {
+            <strong>Formatos: </strong>
+            @for (fmt of pelicula.formato; track fmt; let isLast = $last) {
+              <span>{{ fmt }}</span>@if (!isLast) { <span> - </span> }
+            }
+          }
+        </div>
+        <p class="mb-2"><strong>Restricción: </strong> <span class="badge bg-secondary">{{ pelicula.restriccion_edad }}</span></p>
+
+        <div class="text-sm text-muted">
+          @for (genero of pelicula.generos; track genero; let isLast = $last) {
+            <span>{{ genero }}</span>@if (!isLast) { <span> - </span> }
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+} @else {
+  <!-- DISEÑO 2: Próximo Estreno (Con imagen, título, fecha y eventos de clic agregados) -->
+  <div 
+    class="card h-100 shadow-sm bg-dark text-white border-secondary"
+    role="button"
+    tabindex="0"
+    (click)="onVerClick()"
+    (keydown.enter)="onVerClick()"
+    (keydown.space)="onVerClick(); $event.preventDefault()"
+  >
+    <div class="card-poster-container">
+      <img
+        [src]="pelicula.portada_url"
+        class="card-img-top"
+        [alt]="pelicula.titulo"
+      >
+    </div>
+    <div class="card-body text-center d-flex flex-column justify-content-between">
+      <h5 class="card-title fw-bold mb-2">{{ pelicula.titulo }}</h5>
+      
+      @if (pelicula.fecha_estreno) {
+        <strong class="badge bg-warning text-dark fs-6 py-2">
+          {{ formatearFecha(pelicula.fecha_estreno) }}
+        </strong> 
+      }
+    </div>
+  </div>
+}

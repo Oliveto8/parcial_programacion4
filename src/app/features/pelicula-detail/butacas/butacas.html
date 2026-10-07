@@ -1,0 +1,111 @@
+<div class="container my-4">
+  <div class="p-4 border rounded selection-container shadow-lg contenedor-principal">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h4 class="mb-0 h5 text-uppercase fw-bold text-white tracking-wide">SELECCIONÁ TU BUTACA</h4>
+      <button class="btn btn-sm btn-outline-light" (click)="volver()">⬅ Volver a la película</button>
+    </div>
+
+    <!-- Contenedor del mapa de cine -->
+    <div class="mapa-cine-wrapper text-center p-3 overflow-auto">
+      
+      <!-- Pantalla curva -->
+      <div class="pantalla-curva-container mb-5">
+        <div class="pantalla-texto text-uppercase fw-bold small text-muted mb-1 tracking-wider">PANTALLA</div>
+        <div class="pantalla-barra"></div>
+      </div>
+
+      @if (cargando()) {
+        <p class="text-muted py-5">Cargando distribución de butacas de la sala...</p>
+      } @else {
+       <!-- Matriz de butacas -->
+        <div class="matriz-butacas-cine d-flex flex-column align-items-center mb-4">
+          @for (fila of butacasSala(); track fila.letraFila) {
+            <div class="fila-asientos-row d-flex flex-row align-items-center justify-content-center flex-nowrap mb-2">
+              
+              <!-- Letra de la fila a la izquierda -->
+              <span class="fw-bold text-muted text-end fila-letra">{{ fila.letraFila }}</span>
+              
+              <!-- Contenedor único de la fila -->
+              <div class="asientos-container-lineal d-flex flex-row align-items-center flex-nowrap">
+                @for (asiento of fila.asientos; track asiento.id) {
+                  @if (asiento.vacio) {
+                    <div class="asiento-placeholder"></div>
+                  } @else {
+                    <button 
+                      class="btn btn-sm asiento-btn d-flex align-items-center justify-content-center p-0"
+                      [class.asiento-seleccionado]="esAsientoSeleccionado(asiento)"
+                      [class.asiento-ocupado]="asiento.ocupado"
+                      [class.asiento-disponible]="!asiento.ocupado && !esAsientoSeleccionado(asiento)"
+                      [class.asiento-accesible]="asiento.accesible"
+                      [disabled]="asiento.ocupado"
+                      [class.pasillo-izq]="asiento.numero === 3"
+                      [class.pasillo-der]="asiento.numero === 13"
+                      (click)="toggleAsiento(asiento)"
+                      [title]="'Fila ' + fila.letraFila + ' - Asiento ' + asiento.numero">
+                      
+                      @if (asiento.accesible) {
+                        <span class="icono-asiento">♿</span>
+                      } @else if (asiento.ocupado) {
+                        <span class="icono-ocupado">✕</span>
+                      } @else {
+                        <span class="numero-asiento">{{ asiento.numero }}</span>
+                      }
+                    </button>
+                  }
+                }
+              </div>
+
+              <!-- Letra de la fila a la derecha -->
+              <span class="fw-bold text-muted text-start fila-letra">{{ fila.letraFila }}</span>
+            </div>
+          }
+        </div>
+
+        <!-- Leyenda de colores separada y en una sola línea horizontal -->
+        <div class="d-flex flex-row flex-nowrap justify-content-center align-items-center gap-4 gap-md-5 small text-muted mb-4 pt-3 border-top border-secondary w-100 px-2 overflow-x-auto">
+          <div class="d-flex align-items-center gap-2 flex-shrink-0">
+            <span class="leyenda-box disponible-box"></span> <span>Disponible</span>
+          </div>
+          <div class="d-flex align-items-center gap-2 flex-shrink-0">
+            <span class="leyenda-box seleccionada-box"></span> <span>Seleccionada</span>
+          </div>
+          <div class="d-flex align-items-center gap-2 flex-shrink-0">
+            <span class="leyenda-box ocupada-box"></span> <span>Ocupada</span>
+          </div>
+          <div class="d-flex align-items-center gap-2 flex-shrink-0">
+            <span>♿</span> <span>Accesible</span>
+          </div>
+        </div>
+ 
+        <!-- Footer con selección, precio total dinámico y botón de confirmar centrado -->
+        <div class="d-flex flex-column align-items-center bg-dark p-4 rounded border border-secondary text-center gap-3">
+          <div>
+            <span class="text-muted d-block small">Asientos seleccionados:</span>
+            <span class="fw-bold text-success fs-5">
+              {{ asientosSeleccionadosNombres().length > 0 ? asientosSeleccionadosNombres().join(', ') : 'Ninguno' }}
+            </span>
+          </div>
+
+          <!-- Total a pagar basado en el precio de la base de datos -->
+          <div>
+            <span class="text-muted d-block small">Total a pagar:</span>
+            <span class="fw-bold text-white fs-4">
+              ${{ asientosSeleccionados().length * precioEntrada }}
+            </span>
+          </div>
+
+          <button 
+            class="btn btn-primary px-5 py-2 fw-bold mt-1" 
+            [disabled]="asientosSeleccionados().length === 0 || procesandoCompra()" 
+            (click)="confirmarReserva()">
+            @if (procesandoCompra()) {
+              <span>Procesando...</span>
+            } @else {
+              <span>Finalizar Compra</span>
+            }
+          </button>
+        </div>
+      }
+    </div>
+  </div>
+</div>

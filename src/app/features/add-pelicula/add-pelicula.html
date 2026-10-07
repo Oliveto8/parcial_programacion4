@@ -1,0 +1,76 @@
+<section class="add-book-container">
+  <h1>➕ Agregar Nueva Película</h1>
+
+  <form [formGroup]="peliculaForm" (ngSubmit)="onSubmit()" class="book-form">
+
+    <!-- Campo: Título -->
+    <div class="form-group">
+      <label for="titulo">Título *</label>
+      <input type="text" id="titulo" formControlName="titulo" placeholder="Ej: Inception">
+    </div>
+
+    <!-- Campo: Sinopsis -->
+    <div class="form-group">
+      <label for="sinopsis">Sinopsis *</label>
+      <textarea id="sinopsis" formControlName="sinopsis" placeholder="Sinopsis..."></textarea>
+    </div>
+
+    <!-- Campo: Duración -->
+    <div class="form-group">
+      <label for="duracion_minutos">Duración (minutos) *</label>
+      <input type="number" id="duracion_minutos" formControlName="duracion_minutos" placeholder="120">
+    </div>
+
+    <!-- Campo: Portada URL -->
+    <div class="form-group">
+      <label for="portada_url">URL de Póster *</label>
+      <input type="text" id="portada_url" formControlName="portada_url" placeholder="https://...">
+    </div>
+
+    <!-- Campo: GÉNEROS (Múltiples con Checkboxes) -->
+    <div class="form-group">
+      <label>Géneros (Puedes seleccionar varios) *</label>
+      <div class="checkbox-group" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 5px;">
+        @for (gen of listaGenerosDisponibles; track gen) {
+          <label style="font-weight: normal; display: flex; align-items: center; gap: 6px;">
+            <input type="checkbox" [value]="gen" (change)="onCheckboxChange($event, 'generos')">
+            {{ gen }}
+          </label>
+        }
+      </div>
+    </div>
+
+    <!-- Campo: Restricción de Edad -->
+    <div class="form-group">
+      <label for="restriccion_edad">Restricción de Edad *</label>
+      <select id="restriccion_edad" formControlName="restriccion_edad">
+        @for (restr of restriccionesEdad; track restr) {
+          <option [value]="restr">{{ restr }}</option>
+        }
+      </select>
+    </div>
+
+    <!-- Campo: Fecha de Estreno -->
+    <div class="form-group">
+      <label for="fecha_estreno">Fecha de Estreno *</label>
+      <input type="date" id="fecha_estreno" formControlName="fecha_estreno">
+    </div>
+
+    <!-- Campo: FORMATOS (Múltiples con Checkboxes) -->
+    <div class="form-group">
+      <label>Formatos Disponibles (Puedes seleccionar varios) *</label>
+      <div class="checkbox-group" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 5px;">
+        @for (fmt of formatosDisponibles; track fmt) {
+          <label style="font-weight: normal; display: flex; align-items: center; gap: 6px;">
+            <input type="checkbox" [value]="fmt" (change)="onCheckboxChange($event, 'formato')">
+            {{ fmt }}
+          </label>
+        }
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="peliculaForm.invalid" class="submit-btn">
+      🎬 Guardar Película en Cartelera
+    </button>
+  </form>
+</section>

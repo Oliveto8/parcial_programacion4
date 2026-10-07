@@ -1,0 +1,14 @@
+<div class="search-container">
+  <!-- Two-way binding con model(): el valor se sincroniza con el padre -->
+  <!-- Event Binding (input): actualizamos el model cuando el usuario escribe -->
+  <input 
+    type="text" 
+    [value]="termino()" 
+    (input)="termino.set($any($event.target).value)"
+    placeholder="Buscar por título o género..."
+    class="search-input"
+  >
+  @if (termino()) {
+    <button (click)="limpiar()" class="clear-btn">✕</button>
+  }
+</div>
